@@ -1,0 +1,82 @@
+单核串行数据
+(base) [t-lzw@whshare-ccs-cli-1 ~]$ cat serial_*.log
+N = 4096
+checksum = 17145383747.671360
+Time = 59.10s
+
+(base) [t-lzw@whshare-ccs-cli-1 ~]$ cat omp_*.log
+N = 4096
+checksum = 17145383747.671360
+Time = 57.22s
+
+加速比（speedup）59.10/57.22=1.03
+
+OpenMP多线程并行数据
+(base) [t-lzw@whshare-ccs-cli-1 ~]$ cat omp_*.log
+N = 4096
+checksum = 17145383747.671360
+Time = 12.38s
+(base) [t-lzw@whshare-ccs-cli-1 ~]$
+
+串行时间（Baseline）：59.10s
+8核并行时间（T_parallel）：12.38s
+加速比（Speedup）：59.10 ÷ 12.38 ≈ 4.77 倍
+并行效率（Efficiency）：4.77 ÷ 8 × 100% ≈ 59.6%
+
+BlockingCache分块优化
+（不做OMP优化版）
+(base) [t-lzw@whshare-ccs-cli-1 ~]$ cat block_*.log
+N = 4096
+checksum = 17145383747.671360
+Time = 93.64s
+（16块）
+N = 4096
+checksum = 17145383747.671360
+Time = 101.31s
+（32块）
+(base) [t-lzw@whshare-ccs-cli-1 ~]$ cat block_*.log
+N = 4096
+checksum = 17145383747.671360
+Time = 86.27s
+（64块）
+(base) [t-lzw@whshare-ccs-cli-1 ~]$ cat block_*.log
+N = 4096
+checksum = 17145383747.671360
+Time = 76.53s
+（128块）
+(base) [t-lzw@whshare-ccs-cli-1 ~]$ cat block_*.log
+N = 4096
+checksum = 17145383747.671360
+Time = 70.62s
+（256块）
+
+（OMP优化尝试）
+(base) [t-lzw@whshare-ccs-cli-1 ~]$ cat block_*.log
+N = 4096
+checksum = 17145383747.671360
+Time = 56.65s
+（16块）
+(base) [t-lzw@whshare-ccs-cli-1 ~]$ cat block_*.log
+N = 4096
+checksum = 17145383747.671360
+Time = 18.03s
+（32块）
+N = 4096
+checksum = 17145383747.671360
+Time = 16.57s
+（64块）
+(base) [t-lzw@whshare-ccs-cli-1 ~]$ cat block_*.log
+N = 4096
+checksum = 17145383747.671360
+Time = 15.24s
+（128块）
+(base) [t-lzw@whshare-ccs-cli-1 ~]$ cat block_*.log
+N = 4096
+checksum = 17145383747.671360
+Time = 10.30s
+（256块）
+
+MPI多进程优化
+
+
+
